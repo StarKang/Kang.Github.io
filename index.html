@@ -350,7 +350,7 @@
 <p>其中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">layer.position.y&gt;layer.bounds.size.height</span><br><span class="line">layer.position.y&lt;[UIScreen mainScreen].bounds.size.height</span><br></pre></td></tr></table></figure></p>
 <p>是为了去除第一次加载视图的情况。<br>然后在自己重写的<code>UITabBarController</code>类中添加类别的引用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;TabVC.h&quot;</span><br><span class="line">#import &quot;UITabBar+CustomTabbar.h&quot;</span><br><span class="line"></span><br><span class="line">@interface TabVC ()</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure></p>
 <ul>
-<li>这样,在自定义转场过程中,就能实现自定义的TabBar隐藏动效,而且实现了很大程度的解耦.<br>######出处<br>贴出处<a href="http://www.626code.com/2014/12/%E8%87%AA%E5%AE%9A%E4%B9%89hidesbottombarwhenpushed%E5%8A%A8%E7%94%BB/" target="_blank" rel="noopener">自定义hidesBottomBarWhenPushed动画</a>,如侵删</li>
+<li>这样,在自定义转场过程中,就能实现自定义的TabBar隐藏动效,而且实现了很大程度的解耦.<h6 id="出处"><a href="#出处" class="headerlink" title="出处"></a>出处</h6>贴出处<a href="http://www.626code.com/2014/12/%E8%87%AA%E5%AE%9A%E4%B9%89hidesbottombarwhenpushed%E5%8A%A8%E7%94%BB/" target="_blank" rel="noopener">自定义hidesBottomBarWhenPushed动画</a>,如侵删</li>
 </ul>
 
           

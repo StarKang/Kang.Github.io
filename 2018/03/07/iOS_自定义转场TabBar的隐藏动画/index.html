@@ -112,7 +112,7 @@
 <meta property="og:description" content="摘要实现同iOS 11 App Store Today相似的转场效果.本文尝试解决转场(Transition)过程中TabBar的隐藏(向下滑出屏幕).   遇到的问题项目中使用的是系统自带的Storyboard上的TabBar,TabBar的隐藏使用的是hidesBottomBarWhenPushed方法.实现自定义转场的过程中,TabBar会跟随转场动画向左移出屏幕,但需求是向下滑出屏幕.如">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1908138-eea03cb294e62ccb.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-03-08T09:36:05.382Z">
+<meta property="og:updated_time" content="2018-03-08T09:38:14.939Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS_自定义转场TabBar的隐藏动画">
 <meta name="twitter:description" content="摘要实现同iOS 11 App Store Today相似的转场效果.本文尝试解决转场(Transition)过程中TabBar的隐藏(向下滑出屏幕).   遇到的问题项目中使用的是系统自带的Storyboard上的TabBar,TabBar的隐藏使用的是hidesBottomBarWhenPushed方法.实现自定义转场的过程中,TabBar会跟随转场动画向左移出屏幕,但需求是向下滑出屏幕.如">
@@ -349,7 +349,7 @@
 <p>其中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">layer.position.y&gt;layer.bounds.size.height</span><br><span class="line">layer.position.y&lt;[UIScreen mainScreen].bounds.size.height</span><br></pre></td></tr></table></figure></p>
 <p>是为了去除第一次加载视图的情况。<br>然后在自己重写的<code>UITabBarController</code>类中添加类别的引用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;TabVC.h&quot;</span><br><span class="line">#import &quot;UITabBar+CustomTabbar.h&quot;</span><br><span class="line"></span><br><span class="line">@interface TabVC ()</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure></p>
 <ul>
-<li>这样,在自定义转场过程中,就能实现自定义的TabBar隐藏动效,而且实现了很大程度的解耦.<br>######出处<br>贴出处<a href="http://www.626code.com/2014/12/%E8%87%AA%E5%AE%9A%E4%B9%89hidesbottombarwhenpushed%E5%8A%A8%E7%94%BB/" target="_blank" rel="noopener">自定义hidesBottomBarWhenPushed动画</a>,如侵删</li>
+<li>这样,在自定义转场过程中,就能实现自定义的TabBar隐藏动效,而且实现了很大程度的解耦.<h6 id="出处"><a href="#出处" class="headerlink" title="出处"></a>出处</h6>贴出处<a href="http://www.626code.com/2014/12/%E8%87%AA%E5%AE%9A%E4%B9%89hidesbottombarwhenpushed%E5%8A%A8%E7%94%BB/" target="_blank" rel="noopener">自定义hidesBottomBarWhenPushed动画</a>,如侵删</li>
 </ul>
 
       
@@ -516,7 +516,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#遇到的问题"><span class="nav-number">1.</span> <span class="nav-text">遇到的问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解决的问题"><span class="nav-number">2.</span> <span class="nav-text">解决的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#解决方案"><span class="nav-number">2.1.</span> <span class="nav-text">解决方案</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#UITabBar-CustomTabbar-h"><span class="nav-number">2.2.</span> <span class="nav-text">UITabBar+CustomTabbar.h</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#UITabBar-CustomTabbar-m"><span class="nav-number">2.3.</span> <span class="nav-text">UITabBar+CustomTabbar.m</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#遇到的问题"><span class="nav-number">1.</span> <span class="nav-text">遇到的问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解决的问题"><span class="nav-number">2.</span> <span class="nav-text">解决的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#解决方案"><span class="nav-number">2.1.</span> <span class="nav-text">解决方案</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#UITabBar-CustomTabbar-h"><span class="nav-number">2.2.</span> <span class="nav-text">UITabBar+CustomTabbar.h</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#UITabBar-CustomTabbar-m"><span class="nav-number">2.3.</span> <span class="nav-text">UITabBar+CustomTabbar.m</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#出处"><span class="nav-number">2.4.</span> <span class="nav-text">出处</span></a></li></ol></li></ol></div>
             
 
           </div>
