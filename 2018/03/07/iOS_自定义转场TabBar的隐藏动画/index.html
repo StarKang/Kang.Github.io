@@ -103,19 +103,19 @@
   <meta name="keywords" content="iOS开发," />
 
 
-<meta name="description" content="摘要实现同iOS 11 App Store Today相似的转场效果.本文尝试解决转场(Transition)过程中TabBar的隐藏(向下滑出屏幕).   遇到的问题项目中使用的是系统自带的Storyboard上的TabBar,TabBar的隐藏使用的是hidesBottomBarWhenPushed方法.实现自定义转场的过程中,TabBar会跟随转场动画向左移出屏幕,但需求是向下滑出屏幕.如">
+<meta name="description" content="摘要实现同iOS 11 App Store Today相似的转场效果.本文尝试解决转场(Transition)过程中TabBar的隐藏(向下滑出屏幕).">
 <meta name="keywords" content="iOS开发">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS_自定义转场TabBar的隐藏动画">
 <meta property="og:url" content="http://yoursite.com/2018/03/07/iOS_自定义转场TabBar的隐藏动画/index.html">
 <meta property="og:site_name" content="Kang&#39;s blog">
-<meta property="og:description" content="摘要实现同iOS 11 App Store Today相似的转场效果.本文尝试解决转场(Transition)过程中TabBar的隐藏(向下滑出屏幕).   遇到的问题项目中使用的是系统自带的Storyboard上的TabBar,TabBar的隐藏使用的是hidesBottomBarWhenPushed方法.实现自定义转场的过程中,TabBar会跟随转场动画向左移出屏幕,但需求是向下滑出屏幕.如">
+<meta property="og:description" content="摘要实现同iOS 11 App Store Today相似的转场效果.本文尝试解决转场(Transition)过程中TabBar的隐藏(向下滑出屏幕).">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1908138-eea03cb294e62ccb.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-03-08T09:38:14.939Z">
+<meta property="og:updated_time" content="2018-03-08T10:25:47.492Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS_自定义转场TabBar的隐藏动画">
-<meta name="twitter:description" content="摘要实现同iOS 11 App Store Today相似的转场效果.本文尝试解决转场(Transition)过程中TabBar的隐藏(向下滑出屏幕).   遇到的问题项目中使用的是系统自带的Storyboard上的TabBar,TabBar的隐藏使用的是hidesBottomBarWhenPushed方法.实现自定义转场的过程中,TabBar会跟随转场动画向左移出屏幕,但需求是向下滑出屏幕.如">
+<meta name="twitter:description" content="摘要实现同iOS 11 App Store Today相似的转场效果.本文尝试解决转场(Transition)过程中TabBar的隐藏(向下滑出屏幕).">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1908138-eea03cb294e62ccb.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
@@ -337,6 +337,7 @@
 <li>摘要<br>实现同iOS 11 App Store Today相似的转场效果.本文尝试解决转场(Transition)过程中TabBar的隐藏(向下滑出屏幕).</li>
 </ul>
 <p><img src="http://upload-images.jianshu.io/upload_images/1908138-eea03cb294e62ccb.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="tabbar_ani_slow.gif"></p>
+<a id="more"></a>
 <h5 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h5><p>项目中使用的是系统自带的Storyboard上的TabBar,TabBar的隐藏使用的是<code>hidesBottomBarWhenPushed</code>方法.实现自定义转场的过程中,TabBar会跟随转场动画向左移出屏幕,但需求是向下滑出屏幕.如果自定义TabBar可能更容易实现,具体效果可以点击App Store上的”今日 App”.</p>
 <h5 id="解决的问题"><a href="#解决的问题" class="headerlink" title="解决的问题"></a>解决的问题</h5><p>仅在自定义转场中按需隐藏TabBar(push向下滑出屏幕,pop向上划入屏幕),不影响其他使用系统转场的页面.</p>
 <h6 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h6><ul>
