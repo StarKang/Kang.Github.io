@@ -111,10 +111,12 @@
 <meta property="og:site_name" content="Kang&#39;s blog">
 <meta property="og:description" content="摘要初识ASDK(AsyncDisplayKit/Texture),通过Demo验证对文档的理解.本文使用Texture实现类似「字里行间」App和先前「开眼」App列表的图片动效.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-05T03:13:55.492Z">
+<meta property="og:image" content="http://yoursite.com/images/cellAni.gif">
+<meta property="og:updated_time" content="2018-06-05T03:45:33.970Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ASDK(Texture)学习记录(1)">
 <meta name="twitter:description" content="摘要初识ASDK(AsyncDisplayKit/Texture),通过Demo验证对文档的理解.本文使用Texture实现类似「字里行间」App和先前「开眼」App列表的图片动效.">
+<meta name="twitter:image" content="http://yoursite.com/images/cellAni.gif">
 
 
 
@@ -348,7 +350,7 @@
 <p>对于像ASDK这样如此复杂的布局渲染框架来说，有坑是难免的。我们也踩了不少坑，好在目前看来，ASDK的community比较活跃，bug修复也比较积极（我们也给Apple提过不少bug，然而几个月不回bug report是常有的事）。</p>
 <p>总的来说，带来的好处和理念上的进步多于现有的问题，因此从我们的实践经验来说仍然是值得的。</p>
 </blockquote>
-<h4 id="实现的效果"><a href="#实现的效果" class="headerlink" title="实现的效果"></a>实现的效果</h4><p>…</p>
+<h4 id="实现的效果"><a href="#实现的效果" class="headerlink" title="实现的效果"></a>实现的效果</h4><p><img src="/images/cellAni.gif" alt="">  </p>
 <h4 id="关键代码"><a href="#关键代码" class="headerlink" title="关键代码"></a>关键代码</h4><h5 id="ASViewController"><a href="#ASViewController" class="headerlink" title="ASViewController"></a>ASViewController</h5><p>基类使用<code>ASViewController</code>,只需要引用<code>&lt;AsyncDisplayKit/AsyncDisplayKit.h&gt;</code>头文件即可</p>
 <h5 id="ASTableNode"><a href="#ASTableNode" class="headerlink" title="ASTableNode"></a>ASTableNode</h5><p><code>ASTableNode</code>的初始化写在了当前<code>ViewController</code>的<code>init</code>方法里<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">-(instancetype)init &#123;</span><br><span class="line">_tableNode = [[ASTableNode alloc]init];</span><br><span class="line">self = [super initWithNode:_tableNode];</span><br><span class="line">if (self) &#123;</span><br><span class="line">self.navigationItem.title = @&quot;ASDK TABLE&quot;;</span><br><span class="line">_tableNode.dataSource = self;</span><br><span class="line">_tableNode.delegate   = self;</span><br><span class="line">//...more</span><br><span class="line"> &#125;</span><br><span class="line">return self;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>相应的,跟<code>UITableView</code>类似的,<code>&lt;ASTableDelegate,ASTableDataSource&gt;</code><br>值得一提的是<code>Cell</code>的的代理方法重写方式稍有不同<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-(ASCellNodeBlock)tableNode:(ASTableNode *)tableNode nodeBlockForRowAtIndexPath:(NSIndexPath *)indexPath &#123;</span><br><span class="line"></span><br><span class="line">ASCellNode *(^ASCellNodeBlock)(void) = ^ASCellNode *() &#123;</span><br><span class="line">WKACoverCellNode * cellNode =[[WKACoverCellNode alloc]initWithImgURL:self-&gt;_imgsUrlArray[indexPath.row]];</span><br><span class="line">return cellNode;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">return ASCellNodeBlock;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
