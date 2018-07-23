@@ -112,7 +112,7 @@
 <meta property="og:description" content="摘要初识ASDK(AsyncDisplayKit/Texture),通过Demo验证对文档的理解.本文使用Texture实现类似「字里行间」App和先前「开眼」App列表的图片动效.">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/cellAni.gif">
-<meta property="og:updated_time" content="2018-06-05T03:45:33.970Z">
+<meta property="og:updated_time" content="2018-07-23T08:09:19.557Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ASDK(Texture)学习记录(1)">
 <meta name="twitter:description" content="摘要初识ASDK(AsyncDisplayKit/Texture),通过Demo验证对文档的理解.本文使用Texture实现类似「字里行间」App和先前「开眼」App列表的图片动效.">
@@ -368,7 +368,7 @@
 <p>2.和<code>UIKit</code>不同的是,不能直接向<code>ImgNode.transform</code>发送<code>CGAffineTransform</code>,必须为<code>CATransform3D</code>.</p>
 <p><code>Cell</code>中写好变换,在<code>TableNode</code>的代理方法中调用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-(void)tableNode:(ASTableNode *)tableNode willDisplayRowWithNode:(WKACoverCellNode *)node &#123;</span><br><span class="line">[node cellOffsetWithTableNode:_tableNode];</span><br><span class="line">&#125;</span><br><span class="line">-(void)scrollViewDidScroll:(UIScrollView *)scrollView &#123;</span><br><span class="line">NSArray&lt;WKACoverCellNode *&gt; *array = [self.tableNode visibleNodes];</span><br><span class="line">[array enumerateObjectsUsingBlock:^(WKACoverCellNode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) &#123;</span><br><span class="line">[obj cellOffsetWithTableNode:self.tableNode];</span><br><span class="line">&#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>在<code>UIKit</code>中,是不需要向<code>Cell</code>的<code>cellOffsetWithTableNode:</code>发送<code>tableNode</code>的,直接使用<code>superView</code>就能取到正确的值.但在ASDK中取到的是<code>nil</code>.<br>初步推测是因为ASDK的异步特性导致,这点我后续会继续研究,欢迎探讨.</p>
-<p>代码在这里<a href="github.com/">github</a></p>
+<p>代码在这里<a href="https://github.com/wankankan/WKTextureTableCode" target="_blank" rel="noopener">github</a></p>
 <ul>
 <li>参考文章:<br>Texture官方文档和Demo<br><a href="https://juejin.im/post/5a1be41351882561a20a32e9" target="_blank" rel="noopener">[译] AsyncDisplayKit/Texture 官方文档(2)</a><br><a href="https://wap.allluckly.cn/投稿/tuogao11" target="_blank" rel="noopener">Cell特效之图片随着TableView的滑动上下移动</a></li>
 </ul>
