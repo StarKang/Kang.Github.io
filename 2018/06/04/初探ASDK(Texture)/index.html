@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.5" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.5">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.5">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.5">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.5" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.5',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  
+  <meta name="keywords" content="ASDK," />
+
+
+<meta name="description" content="摘要初识ASDK(AsyncDisplayKit/Texture),通过Demo验证对文档的理解.本文使用Texture实现类似「字里行间」App和先前「开眼」App列表的图片动效.">
+<meta name="keywords" content="ASDK">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初探ASDK(Texture)">
+<meta property="og:url" content="http://yoursite.com/2018/06/04/初探ASDK(Texture)/index.html">
+<meta property="og:site_name" content="Kang&#39;s blog">
+<meta property="og:description" content="摘要初识ASDK(AsyncDisplayKit/Texture),通过Demo验证对文档的理解.本文使用Texture实现类似「字里行间」App和先前「开眼」App列表的图片动效.">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/images/cellAni.gif">
+<meta property="og:updated_time" content="2018-09-06T05:50:04.957Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初探ASDK(Texture)">
+<meta name="twitter:description" content="摘要初识ASDK(AsyncDisplayKit/Texture),通过Demo验证对文档的理解.本文使用Texture实现类似「字里行间」App和先前「开眼」App列表的图片动效.">
+<meta name="twitter:image" content="http://yoursite.com/images/cellAni.gif">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/04/初探ASDK(Texture)/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+  <title>初探ASDK(Texture) | Kang's blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kang's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/04/初探ASDK(Texture)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kang's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">初探ASDK(Texture)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-04T19:00:00+08:00">2018-06-04</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li>摘要<br>初识ASDK(AsyncDisplayKit/Texture),通过Demo验证对文档的理解.本文使用Texture实现类似「字里行间」App和先前「开眼」App列表的图片动效.</li>
+</ul>
+<a id="more"></a>
+<h4 id="为什么使用Texture"><a href="#为什么使用Texture" class="headerlink" title="为什么使用Texture?"></a>为什么使用Texture?</h4><p>此处引用<em>即刻技术团队</em>在「知乎」上的论述</p>
+<blockquote>
+<p>view缓冲池是一种比较常见的优化方案，但是只能降低view创建和销毁的开销，对于布局和渲染的性能没有太多帮助。即刻的消息流有非常多样的布局和大量的图片，单靠hidden是没有办法避免布局约束变化的。手写frame也就像我们提到的，保障的是性能，牺牲的是编码效率和可维护性。我们也研究过网上各种各样的优化方案（在本系列第一篇里面有相应的讨论，包括Autolayout算法的性能问题），总的来说治标不治本，在新设备多核化的大趋势下，只用主线程来承担绝大多数任务是很大的浪费。</p>
+<p>ASDK的作者Scott之前就是Apple的UIKit team的工程师，他认为布局必须在主线程的原因是因为早期设备只有单核，并且最初的移动sdk的设计也是为了简单可靠而选用单线程。而如今要改成异步的话，面对海量已有app的兼容是巨大的工程，因此Apple只能在已有基础上优化，继续坚持主线程布局渲染。作为平台提供商，Apple理所应当专注于基础框架和系统层，对于布局的高级抽象确实不是他们所擅长的，姗姗来迟的UIStackView和bug不少的UICollectionView就说明了这一点。</p>
+<p>对于像ASDK这样如此复杂的布局渲染框架来说，有坑是难免的。我们也踩了不少坑，好在目前看来，ASDK的community比较活跃，bug修复也比较积极（我们也给Apple提过不少bug，然而几个月不回bug report是常有的事）。</p>
+<p>总的来说，带来的好处和理念上的进步多于现有的问题，因此从我们的实践经验来说仍然是值得的。</p>
+</blockquote>
+<h4 id="实现的效果"><a href="#实现的效果" class="headerlink" title="实现的效果"></a>实现的效果</h4><p><img src="/images/cellAni.gif" alt="">  </p>
+<h4 id="关键代码"><a href="#关键代码" class="headerlink" title="关键代码"></a>关键代码</h4><h5 id="ASViewController"><a href="#ASViewController" class="headerlink" title="ASViewController"></a>ASViewController</h5><p>基类使用<code>ASViewController</code>,只需要引用<code>&lt;AsyncDisplayKit/AsyncDisplayKit.h&gt;</code>头文件即可</p>
+<h5 id="ASTableNode"><a href="#ASTableNode" class="headerlink" title="ASTableNode"></a>ASTableNode</h5><p><code>ASTableNode</code>的初始化写在了当前<code>ViewController</code>的<code>init</code>方法里<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">-(instancetype)init &#123;</span><br><span class="line">_tableNode = [[ASTableNode alloc]init];</span><br><span class="line">self = [super initWithNode:_tableNode];</span><br><span class="line">if (self) &#123;</span><br><span class="line">self.navigationItem.title = @&quot;ASDK TABLE&quot;;</span><br><span class="line">_tableNode.dataSource = self;</span><br><span class="line">_tableNode.delegate   = self;</span><br><span class="line">//...more</span><br><span class="line"> &#125;</span><br><span class="line">return self;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>相应的,跟<code>UITableView</code>类似的,<code>&lt;ASTableDelegate,ASTableDataSource&gt;</code><br>值得一提的是<code>Cell</code>的的代理方法重写方式稍有不同<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-(ASCellNodeBlock)tableNode:(ASTableNode *)tableNode nodeBlockForRowAtIndexPath:(NSIndexPath *)indexPath &#123;</span><br><span class="line"></span><br><span class="line">ASCellNode *(^ASCellNodeBlock)(void) = ^ASCellNode *() &#123;</span><br><span class="line">WKACoverCellNode * cellNode =[[WKACoverCellNode alloc]initWithImgURL:self-&gt;_imgsUrlArray[indexPath.row]];</span><br><span class="line">return cellNode;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">return ASCellNodeBlock;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其中<code>WKACoverCellNode</code>即是自定义<code>Cell</code>,父类是<code>ASCellNode</code>.另一方面<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#pragma mark - ASTableDelegate methods</span><br><span class="line">// Receive a message that the tableView is near the end of its data set and more data should be fetched if necessary.</span><br><span class="line">- (void)tableNode:(ASTableNode *)tableNode willBeginBatchFetchWithContext:(ASBatchContext *)context</span><br><span class="line">&#123;</span><br><span class="line">[context beginBatchFetching];</span><br><span class="line">[self loadPageWithContext:context];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果使用这个方法,则可以很便捷的实现,滑动到底部时,加载更多数据.实际体验很好.</p>
+<h5 id="ASCellNode"><a href="#ASCellNode" class="headerlink" title="ASCellNode"></a>ASCellNode</h5><p>自定义<code>Cell</code>同样在<code>init</code>方法中初始化控件.但是布局写在另外的方法中.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">-(instancetype)initWithImgURL:(NSString *)imgURL &#123;</span><br><span class="line">self = [super init];</span><br><span class="line"></span><br><span class="line">if (self) &#123;</span><br><span class="line"></span><br><span class="line">_coverImgNode             = [[ASNetworkImageNode alloc]init];</span><br><span class="line">_coverImgNode.delegate    = self;</span><br><span class="line">_coverImgNode.URL         = [NSURL URLWithString:imgURL];</span><br><span class="line">_coverImgNode.layerBacked = YES;</span><br><span class="line">// instead of adding everything addSubnode:</span><br><span class="line">self.automaticallyManagesSubnodes = YES;</span><br><span class="line"></span><br><span class="line">//为滑动效果添加的代码</span><br><span class="line">self.clipsToBounds = YES;</span><br><span class="line"> &#125;</span><br><span class="line">return self;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>本Demo只用了一个网络图片的控件<code>ASNetworkImageNode</code>.</p>
+<h5 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h5><p>ASDK的布局方法丰富、灵活.官方Demo中也给出了YogaKit方式以实现跟ASLayout相同的布局.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">-(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize &#123;</span><br><span class="line">//垂直</span><br><span class="line">ASStackLayoutSpec *vStack = [ASStackLayoutSpec verticalStackLayoutSpec];</span><br><span class="line"></span><br><span class="line">CGRect screenRect   = [[UIScreen mainScreen] bounds];</span><br><span class="line">//CGFloat screenScale = [[UIScreen mainScreen] scale];</span><br><span class="line">CGSize screenWidthImageSize = CGSizeMake(screenRect.size.width, 200 * 2);</span><br><span class="line">_coverImgNode.style.preferredSize = screenWidthImageSize;</span><br><span class="line"></span><br><span class="line">[vStack setChild:[ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsMake(-0.5 * 200, 0, 0, 0) child:_coverImgNode]];</span><br><span class="line">vStack.style.maxSize = CGSizeMake(screenRect.size.width, 200);</span><br><span class="line"></span><br><span class="line">return vStack;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>ASStackLayoutSpec</code>与<code>StackView</code>类似,使用也最为广泛.这里我使用<code>.style.maxSzie</code>设置行高</p>
+<blockquote>
+<p>.style.maxSize CGSize 类型，可选属性，为布局元素提供最大尺寸，如果提供，maxSize 将会强制使用。 如果子布局元素的 maxSize 小于其父级的 maxSize，则强制使用子级的 maxSize，并且其大小将扩展到布局规则之外。</p>
+</blockquote>
+<h5 id="添加设置滑动特效"><a href="#添加设置滑动特效" class="headerlink" title="添加设置滑动特效"></a>添加设置滑动特效</h5><p>思路:<code>ASNetworkImageNode</code>高度是行高的2倍,通过<code>UIEdgeInsets</code>设置<code>ImageNode</code>顶部超出<code>Cell</code>行高的一半.<br><code>Cell</code>中添加变换的方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">-(void)cellOffsetWithTableNode:(ASTableNode *)tableNode &#123;</span><br><span class="line"></span><br><span class="line">CGRect centerToWindow = [self convertRect:self.bounds toNode:nil];</span><br><span class="line">CGFloat centerY = CGRectGetMidY(centerToWindow);</span><br><span class="line"></span><br><span class="line">CGPoint windowCenter = tableNode.position;</span><br><span class="line">CGFloat cellOffsetY = centerY - windowCenter.y;</span><br><span class="line">CGFloat tableHeight = tableNode.frame.size.height;</span><br><span class="line"></span><br><span class="line">CGFloat offsetDig = (cellOffsetY / tableHeight)*(200);</span><br><span class="line">CATransform3D transY = CATransform3DMakeTranslation(0, -offsetDig, 0);</span><br><span class="line">_coverImgNode.transform = transY;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>值得注意的是,<br>1.ASDK的方法<code>convertRect:toNode:</code>对应UIKit中的<code>convertRect:self.bounds toView:self.window</code>,但是ASDK基于<code>Node</code>是不能直接发送<code>View</code>的.<br>通过查看源码,这里我们发送nil.方法内可以自动获取到<code>window</code>,从而也取得了相对位置的值.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">- (CGRect)convertRect:(CGRect)rect toNode:(ASDisplayNode *)node</span><br><span class="line">&#123;</span><br><span class="line">ASDisplayNodeAssertThreadAffinity(self);</span><br><span class="line"></span><br><span class="line">if (node == nil &amp;&amp; self.nodeLoaded) &#123;</span><br><span class="line">CALayer *layer = self.layer;</span><br><span class="line">if (UIWindow *window = ASFindWindowOfLayer(layer)) &#123;</span><br><span class="line">return [layer convertRect:rect toLayer:window.layer];</span><br><span class="line">&#125; else &#123;</span><br><span class="line">return rect;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">//...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>2.和<code>UIKit</code>不同的是,不能直接向<code>ImgNode.transform</code>发送<code>CGAffineTransform</code>,必须为<code>CATransform3D</code>.</p>
+<p><code>Cell</code>中写好变换,在<code>TableNode</code>的代理方法中调用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-(void)tableNode:(ASTableNode *)tableNode willDisplayRowWithNode:(WKACoverCellNode *)node &#123;</span><br><span class="line">[node cellOffsetWithTableNode:_tableNode];</span><br><span class="line">&#125;</span><br><span class="line">-(void)scrollViewDidScroll:(UIScrollView *)scrollView &#123;</span><br><span class="line">NSArray&lt;WKACoverCellNode *&gt; *array = [self.tableNode visibleNodes];</span><br><span class="line">[array enumerateObjectsUsingBlock:^(WKACoverCellNode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) &#123;</span><br><span class="line">[obj cellOffsetWithTableNode:self.tableNode];</span><br><span class="line">&#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在<code>UIKit</code>中,是不需要向<code>Cell</code>的<code>cellOffsetWithTableNode:</code>发送<code>tableNode</code>的,直接使用<code>superView</code>就能取到正确的值.但在ASDK中取到的是<code>nil</code>.<br>初步推测是因为ASDK的异步特性导致,这点我后续会继续研究,欢迎探讨.</p>
+<p>代码在这里<a href="https://github.com/wankankan/WKTextureTableCode" target="_blank" rel="noopener">github</a></p>
+<ul>
+<li>参考文章:<br>Texture官方文档和Demo<br><a href="https://juejin.im/post/5a1be41351882561a20a32e9" target="_blank" rel="noopener">[译] AsyncDisplayKit/Texture 官方文档(2)</a><br><a href="https://wap.allluckly.cn/投稿/tuogao11" target="_blank" rel="noopener">Cell特效之图片随着TableView的滑动上下移动</a></li>
+</ul>
+<p>以上.</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ASDK/" rel="tag"># ASDK</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/07/iOS_自定义转场TabBar的隐藏动画/" rel="next" title="iOS_自定义转场TabBar的隐藏动画">
+                <i class="fa fa-chevron-left"></i> iOS_自定义转场TabBar的隐藏动画
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="kang" />
+            
+              <p class="site-author-name" itemprop="name">kang</p>
+              <p class="site-description motion-element" itemprop="description">Just so so</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/wankankan" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://codingwjl.github.io/" title="wjl's Blog" target="_blank">wjl's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么使用Texture"><span class="nav-number">1.</span> <span class="nav-text">为什么使用Texture?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现的效果"><span class="nav-number">2.</span> <span class="nav-text">实现的效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关键代码"><span class="nav-number">3.</span> <span class="nav-text">关键代码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ASViewController"><span class="nav-number">3.1.</span> <span class="nav-text">ASViewController</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ASTableNode"><span class="nav-number">3.2.</span> <span class="nav-text">ASTableNode</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ASCellNode"><span class="nav-number">3.3.</span> <span class="nav-text">ASCellNode</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#布局"><span class="nav-number">3.4.</span> <span class="nav-text">布局</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#添加设置滑动特效"><span class="nav-number">3.5.</span> <span class="nav-text">添加设置滑动特效</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kang</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.5</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.5"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.5"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.5"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.5"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.5"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.5"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.5"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
