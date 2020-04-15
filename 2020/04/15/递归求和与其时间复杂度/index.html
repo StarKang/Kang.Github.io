@@ -100,26 +100,28 @@
 
 
   
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="学习," />
 
 
-<meta name="description" content="Just so so">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Kang&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/archives/2018/05/index.html">
+<meta name="description" content="递归算法实现1-100求和C语言形式12345Sum(int num) &amp;#123;return num &amp;lt;= 0 ? 0 : num + Sum(num - 1);&amp;#125; 时间复杂度因为运行了100次，所以时间复杂度O(n)=O(100) 递归形式的缺点 效率会有问题，时间复杂度高，如菲波那切数列计算重复会造成资源浪费。 调用层级过多，会引起调用栈溢出。  尝试优化时间复杂度至O(1">
+<meta name="keywords" content="学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="递归求和与其时间复杂度">
+<meta property="og:url" content="http://yoursite.com/2020/04/15/递归求和与其时间复杂度/index.html">
 <meta property="og:site_name" content="Kang&#39;s blog">
-<meta property="og:description" content="Just so so">
+<meta property="og:description" content="递归算法实现1-100求和C语言形式12345Sum(int num) &amp;#123;return num &amp;lt;= 0 ? 0 : num + Sum(num - 1);&amp;#125; 时间复杂度因为运行了100次，所以时间复杂度O(n)=O(100) 递归形式的缺点 效率会有问题，时间复杂度高，如菲波那切数列计算重复会造成资源浪费。 调用层级过多，会引起调用栈溢出。  尝试优化时间复杂度至O(1">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-04-15T09:03:46.315Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kang&#39;s blog">
-<meta name="twitter:description" content="Just so so">
+<meta name="twitter:title" content="递归求和与其时间复杂度">
+<meta name="twitter:description" content="递归算法实现1-100求和C语言形式12345Sum(int num) &amp;#123;return num &amp;lt;= 0 ? 0 : num + Sum(num - 1);&amp;#125; 时间复杂度因为运行了100次，所以时间复杂度O(n)=O(100) 递归形式的缺点 效率会有问题，时间复杂度高，如菲波那切数列计算重复会造成资源浪费。 调用层级过多，会引起调用栈溢出。  尝试优化时间复杂度至O(1">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2018/05/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/04/15/递归求和与其时间复杂度/"/>
 
 
 
@@ -128,7 +130,7 @@
     sidebar: "",
   };
 </script>
-  <title>归档 | Kang's blog</title>
+  <title>递归求和与其时间复杂度 | Kang's blog</title>
   
 
 
@@ -175,7 +177,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -253,80 +255,165 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        嗯..! 目前共计 4 篇日志。 继续努力。
-      </span>
-      
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
-
-        
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/15/递归求和与其时间复杂度/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kang's blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/05/02/言叶之庭/" itemprop="url">
-              
-                <span itemprop="name">言叶之庭</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">递归求和与其时间复杂度</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-02T11:11:00+08:00"
-              content="2018-05-02" >
-          05-02
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-15T16:45:00+08:00">2020-04-15</time>
+            
 
-    </header>
-  </article>
+            
+            
 
+            
+          </span>
 
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+      
 
+      
+        <h2 id="递归算法实现1-100求和"><a href="#递归算法实现1-100求和" class="headerlink" title="递归算法实现1-100求和"></a>递归算法实现1-100求和</h2><p><em>C语言形式</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Sum(int num) &#123;</span><br><span class="line"></span><br><span class="line">return num &lt;= 0 ? 0 : num + Sum(num - 1);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><p>因为运行了100次，所以时间复杂度O(n)=O(100)</p>
+<h3 id="递归形式的缺点"><a href="#递归形式的缺点" class="headerlink" title="递归形式的缺点"></a>递归形式的缺点</h3><ol>
+<li>效率会有问题，时间复杂度高，如菲波那切数列计算重复会造成资源浪费。</li>
+<li>调用层级过多，会引起调用栈溢出。</li>
+</ol>
+<h3 id="尝试优化时间复杂度至O-1"><a href="#尝试优化时间复杂度至O-1" class="headerlink" title="尝试优化时间复杂度至O(1)"></a>尝试优化时间复杂度至O(1)</h3><p><em>采用高斯的算法</em><br><code>(1 + num) *num/2</code></p>
+
+      
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习/" rel="tag"># 学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/04/ASDK学习记录(1)/" rel="next" title="ASDK(Texture)学习记录(1)">
+                <i class="fa fa-chevron-left"></i> ASDK(Texture)学习记录(1)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -347,8 +434,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -367,7 +463,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -437,6 +533,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#递归算法实现1-100求和"><span class="nav-number">1.</span> <span class="nav-text">递归算法实现1-100求和</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#时间复杂度"><span class="nav-number">1.1.</span> <span class="nav-text">时间复杂度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#递归形式的缺点"><span class="nav-number">1.2.</span> <span class="nav-text">递归形式的缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#尝试优化时间复杂度至O-1"><span class="nav-number">1.3.</span> <span class="nav-text">尝试优化时间复杂度至O(1)</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -578,6 +690,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.5"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.5"></script>
+
+
 
   
 
