@@ -103,25 +103,25 @@
   <meta name="keywords" content="剑指," />
 
 
-<meta name="description" content="递归算法实现1-100求和C语言形式12345Sum(int num) &amp;#123;return num &amp;lt;= 0 ? 0 : num + Sum(num - 1);&amp;#125; 时间复杂度因为运行了100次，所以时间复杂度O(n)=O(100) 递归形式的缺点 效率会有问题，时间复杂度高，如菲波那切数列计算重复会造成资源浪费。 调用层级过多，会引起调用栈溢出。  尝试优化时间复杂度至O(1">
+<meta name="description" content="面试题3：题目一 找出数组中重复的数字在一个长度为n的数组里的所有数字都在0~n-1的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。例如，如果输入长度为7的数组{2，3，1，0，2，5，3}，那么对应的输出是重复的数字2或者3。OC形式123456789101112131415161718192021222324252627.">
 <meta name="keywords" content="剑指">
 <meta property="og:type" content="article">
-<meta property="og:title" content="递归求和与其时间复杂度">
-<meta property="og:url" content="http://yoursite.com/2020/04/15/递归求和与其时间复杂度/index.html">
+<meta property="og:title" content="数组中重复的数字题目一">
+<meta property="og:url" content="http://yoursite.com/2020/04/15/数组中重复的数字题目一/index.html">
 <meta property="og:site_name" content="Kang&#39;s blog">
-<meta property="og:description" content="递归算法实现1-100求和C语言形式12345Sum(int num) &amp;#123;return num &amp;lt;= 0 ? 0 : num + Sum(num - 1);&amp;#125; 时间复杂度因为运行了100次，所以时间复杂度O(n)=O(100) 递归形式的缺点 效率会有问题，时间复杂度高，如菲波那切数列计算重复会造成资源浪费。 调用层级过多，会引起调用栈溢出。  尝试优化时间复杂度至O(1">
+<meta property="og:description" content="面试题3：题目一 找出数组中重复的数字在一个长度为n的数组里的所有数字都在0~n-1的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。例如，如果输入长度为7的数组{2，3，1，0，2，5，3}，那么对应的输出是重复的数字2或者3。OC形式123456789101112131415161718192021222324252627.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-15T10:03:45.372Z">
+<meta property="og:updated_time" content="2020-04-15T10:41:21.668Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="递归求和与其时间复杂度">
-<meta name="twitter:description" content="递归算法实现1-100求和C语言形式12345Sum(int num) &amp;#123;return num &amp;lt;= 0 ? 0 : num + Sum(num - 1);&amp;#125; 时间复杂度因为运行了100次，所以时间复杂度O(n)=O(100) 递归形式的缺点 效率会有问题，时间复杂度高，如菲波那切数列计算重复会造成资源浪费。 调用层级过多，会引起调用栈溢出。  尝试优化时间复杂度至O(1">
+<meta name="twitter:title" content="数组中重复的数字题目一">
+<meta name="twitter:description" content="面试题3：题目一 找出数组中重复的数字在一个长度为n的数组里的所有数字都在0~n-1的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。例如，如果输入长度为7的数组{2，3，1，0，2，5，3}，那么对应的输出是重复的数字2或者3。OC形式123456789101112131415161718192021222324252627.">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/04/15/递归求和与其时间复杂度/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/04/15/数组中重复的数字题目一/"/>
 
 
 
@@ -130,7 +130,7 @@
     sidebar: "",
   };
 </script>
-  <title>递归求和与其时间复杂度 | Kang's blog</title>
+  <title>数组中重复的数字题目一 | Kang's blog</title>
   
 
 
@@ -271,7 +271,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/15/递归求和与其时间复杂度/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/15/数组中重复的数字题目一/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="kang">
@@ -288,7 +288,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">递归求和与其时间复杂度</h1>
+          <h1 class="post-title" itemprop="name headline">数组中重复的数字题目一</h1>
         
 
         <div class="post-meta">
@@ -300,7 +300,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-15T16:45:00+08:00">2020-04-15</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-15T18:32:00+08:00">2020-04-15</time>
             
 
             
@@ -337,13 +337,11 @@
       
 
       
-        <h2 id="递归算法实现1-100求和"><a href="#递归算法实现1-100求和" class="headerlink" title="递归算法实现1-100求和"></a>递归算法实现1-100求和</h2><p><em>C语言形式</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Sum(int num) &#123;</span><br><span class="line"></span><br><span class="line">return num &lt;= 0 ? 0 : num + Sum(num - 1);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><p>因为运行了100次，所以时间复杂度O(n)=O(100)</p>
-<h3 id="递归形式的缺点"><a href="#递归形式的缺点" class="headerlink" title="递归形式的缺点"></a>递归形式的缺点</h3><ol>
-<li>效率会有问题，时间复杂度高，如菲波那切数列计算重复会造成资源浪费。</li>
-<li>调用层级过多，会引起调用栈溢出。</li>
-</ol>
-<h3 id="尝试优化时间复杂度至O-1"><a href="#尝试优化时间复杂度至O-1" class="headerlink" title="尝试优化时间复杂度至O(1)"></a>尝试优化时间复杂度至O(1)</h3><p><em>采用高斯的算法</em><br><code>(1 + num) *num/2</code></p>
+        <h2 id="面试题3：题目一-找出数组中重复的数字"><a href="#面试题3：题目一-找出数组中重复的数字" class="headerlink" title="面试题3：题目一 找出数组中重复的数字"></a>面试题3：题目一 找出数组中重复的数字</h2><p>在一个长度为n的数组里的所有数字都在0~n-1的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。例如，如果输入长度为7的数组{2，3，1，0，2，5，3}，那么对应的输出是重复的数字2或者3。<br><em>OC形式</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">NSArray *numbers = @[@(2),@(3),@(1),@(0),@(2),@(5),@(3)];</span><br><span class="line">...</span><br><span class="line">- (BOOL)duplicateWithNumbers:(NSMutableArray *)numbers length:(int)length &#123;</span><br><span class="line">    if (!numbers || length &lt;= 0) &#123;</span><br><span class="line">        return NO;</span><br><span class="line">    &#125;</span><br><span class="line">    for (int i = 0; i &lt; length; ++i) &#123;</span><br><span class="line">        if (numbers[i] &lt; 0 || [numbers[i] integerValue] &gt; length - 1) &#123;</span><br><span class="line">            return NO;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    for (int i = 0; i &lt; length; ++i) &#123;</span><br><span class="line">        NSInteger j = [numbers[i] integerValue];</span><br><span class="line">        while (j != i) &#123;</span><br><span class="line">            if (j == [numbers[j] integerValue]) &#123;</span><br><span class="line">                self.duplication = j;</span><br><span class="line">                return YES;</span><br><span class="line">            &#125;</span><br><span class="line">            NSInteger temp = j;</span><br><span class="line">            j = [numbers[temp] integerValue];</span><br><span class="line">            numbers[temp] = @(temp);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return NO;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><blockquote>
+<p>代码中尽管有一个两重循环，但每个数字最多只要交换两次就能找到属于它自己的位置，因此总的时间复杂度为O(n)，另外所有的操作步骤都是在输入的数组上进行的，不需要额外分配内存，因此空间复杂度为O(1)。</p>
+</blockquote>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>首先想到的都是排序，排序一个长度为n的数组需要O(nlogn)的时间。还可以利用哈希表来解决，从头到尾按顺序扫描数组里的每个数字，每扫描到一个数字的时候，都可以用O(1)的时间来判断哈希表里是否已经包含了该数字。如果哈希表里还没有这个数字，就把它加入哈希表。如果哈希表里已经存在该数字，就找到一个重复的数字。这个算法的时间复杂度为O(n)，但提高时间效率是以一个大小为O(n)的哈希表为代价的。<br>上述代码中的思路是根据下标和数值重排数组。</p>
 
       
     </div>
@@ -377,8 +375,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/04/ASDK学习记录(1)/" rel="next" title="ASDK(Texture)学习记录(1)">
-                <i class="fa fa-chevron-left"></i> ASDK(Texture)学习记录(1)
+              <a href="/2020/04/15/递归求和与其时间复杂度/" rel="next" title="递归求和与其时间复杂度">
+                <i class="fa fa-chevron-left"></i> 递归求和与其时间复杂度
               </a>
             
           </div>
@@ -387,8 +385,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/04/15/数组中重复的数字题目一/" rel="prev" title="数组中重复的数字题目一">
-                数组中重复的数字题目一 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/04/15/数组中重复的数字题目二/" rel="prev" title="数组中重复的数字题目二">
+                数组中重复的数字题目二 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -547,7 +545,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#递归算法实现1-100求和"><span class="nav-number">1.</span> <span class="nav-text">递归算法实现1-100求和</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#时间复杂度"><span class="nav-number">1.1.</span> <span class="nav-text">时间复杂度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#递归形式的缺点"><span class="nav-number">1.2.</span> <span class="nav-text">递归形式的缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#尝试优化时间复杂度至O-1"><span class="nav-number">1.3.</span> <span class="nav-text">尝试优化时间复杂度至O(1)</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题3：题目一-找出数组中重复的数字"><span class="nav-number">1.</span> <span class="nav-text">面试题3：题目一 找出数组中重复的数字</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#时间复杂度"><span class="nav-number">1.1.</span> <span class="nav-text">时间复杂度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">1.2.</span> <span class="nav-text">思路</span></a></li></ol></li></ol></div>
             
 
           </div>
